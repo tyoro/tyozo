@@ -8,7 +8,6 @@ if( empty($_POST['url']) ){
 }
 
 $file_path = $DIR_PATH.$_POST['url'].'.png';
-$public_dir = '/var/www/gyazo/data/';
 if( !is_public_file( $public_dir ,$file_path, false ) ){
 	print 'file not found.';
 	exit;
