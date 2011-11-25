@@ -1,0 +1,59 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+div#doc{
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	margin:0px;
+	padding:0px;
+}
+
+div#main-content{
+	padding:8px;
+    top: 2px;
+	position:relative;
+	clear:both;
+	width: 80%;
+	left:50px;
+}
+
+div.imgbox {
+	border: 1px dashed #0000cc;
+	background-color: #eeeeff;  /* 2.背景色 */
+	width: 110px; /* 横幅 */
+	text-align: center; /* 3.中央寄せ */
+	float: left;
+	margin: 5px;
+}
+
+a.image, a.caption {
+	text-align: center; /* 3.中央寄せ */
+    margin: 5px;        /* 4.余白・間隔 */
+}
+a.caption{
+    font-size: 80%;  /* 5.文字サイズ */
+    color: darkblue; /* 6.文字色 */
+}
+.clearfix:after {
+    content: ".";  /* 新しい要素を作る */
+    display: block;  /* ブロックレベル要素に */
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+.clearfix {
+  min-height: 1px;
+}
+
+* html .clearfix {
+  height: 1px;
+  /*\*//*/
+  height: auto;
+  overflow: hidden;
+  /**/
+}

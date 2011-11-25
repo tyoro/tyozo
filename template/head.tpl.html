@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<title>image list</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/jquery.lightbox-0.5.css" />
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.lightbox-0.5.min.js"></script>
+<script type="text/javascript" >
+
+$(function(){
+	$('a.lightbox').lightBox();
+});
+function deleteImage(e,src){
+	var imgbox = $(e.target).parent().parent();
+	if(window.confirm('this image delete ok?')){
+		console.log(src);
+		console.log(src.substr(3,src.length-7));
+		$.ajax({
+			type:"POST",
+			url:"./delete.php",
+			data: "url="+src.substr(3,src.length-7),
+			success: function(msg){
+				if( msg == "success." ){
+					imgbox.remove();
+				}else{
+					alert(msg);
+				}
+			},
+			error: function(data){
+				
+			}
+		});
+	}
+}
+</script>
+</HEAD>
+<BODY>
+<h1>image list</h1>
