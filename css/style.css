@@ -57,3 +57,17 @@ a.caption{
   overflow: hidden;
   /**/
 }
+
+/* calendar */
+
+span.weekDay5 {
+	color:#0000cc;
+}
+
+span.weekDay6 {
+	color:#cc0000;
+}
+
+
+
+

@@ -17,10 +17,10 @@ usort( $files, function($a,$b){ return $b['time'] - $a['time']; } );
 
 foreach( $files as $file ){
 	if(  $i>= $page*$PER_PAGE ){
-    	$tpl->setCurrentBlock('list');
-    	$tpl->setVariable( 'name',$DIR_PATH.$file['name']);
-    	$tpl->setVariable( 'time',date( "m/d G:i", $file['time']));
-    	$tpl->parseCurrentBlock();
+		$tpl->setCurrentBlock('list');
+		$tpl->setVariable( 'name',$DIR_PATH.$file['name']);
+		$tpl->setVariable( 'time',date( "m/d G:i", $file['time']));
+		$tpl->parseCurrentBlock();
 		if( $i > $PER_PAGE * ($page+1) ){ $next = true; break; }
 	}
 	$i++;
@@ -30,6 +30,6 @@ if( $next && $i < count($files)  ){
 	$tpl->setVariable( 'page',$page+1);
 	$tpl->parseCurrentBlock();
 }
-
+	
 require_once 'foot.inc';
 ?>

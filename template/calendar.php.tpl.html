@@ -1,0 +1,28 @@
+{head}
+<div class=“autopagerize_page_element”>
+<!-- BEGIN calendar -->
+{prev}&nbsp;{now}&nbsp;{next}
+<hr/>
+<!-- BEGIN calendar_day -->
+<span class="{weekDayClass}">{day}(&nbsp;{weekDay}&nbsp;)</span>
+<div class="clearfix" >
+<!-- BEGIN list -->
+<div class="imgbox">
+<a class="image lightbox" href="{name}" >
+<img src='{name}' width="100pixl" height="100pixl" />
+</a>
+<div class="element-foot">
+<input type="button" class="delete" value="del" onclick="deleteImage(event,'{name}');" />
+</div>
+</div>
+<!-- END list -->
+</div>
+<hr />
+<!-- END calendar_day -->
+<!-- END calendar -->
+</div>
+<br class="autopagerize_page_element" />
+<!-- BEGIN next -->
+<a rel="next" href="index.php?page={page}" class="next" >next</a>
+<!-- END next -->
+{foot}
