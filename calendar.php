@@ -11,7 +11,7 @@ $fileNames = Array();
 $i=0;
 
 $y = isset($_GET['y'])?$_GET['y']-0:date('Y');
-$m = isset($_GET['m'])?$_GET['m']-0:date('m');
+$m = isset($_GET['m'])?$_GET['m']-0:date('n');
 
 while($file_name = readdir($dir)) {
     if( is_file("{$DIR_PATH}{$file_name}") && preg_match( '/\.png$/', $file_name ) ) {
