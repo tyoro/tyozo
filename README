@@ -8,7 +8,7 @@ http://gyazo.tyo.ro/95237133419dd50daf9dc4c5bb97c499.png
 
 ●動作環境
 php5.3以上が必須です。
-他は一般的なphp環境で動きますが、HTML_emplate_IT だけ pear のライブラリなので導入しないといけません。
+他は一般的なphp環境で動きますが、HTML_Template_IT だけ pear のライブラリなので導入しないといけません。
 http://pear.php.net/package/HTML_Template_IT
 
 ●インストール
