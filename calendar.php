@@ -53,7 +53,7 @@ $Link->setFragments( 'y', 'm' );
 $tpl->setVariable("now",$Link->thisYear().' '.$Link->thisMonth());
 
 $prevMonth = $Link->prevMonth('object');
-$tpl->setVariable("prev",'<a href="calendar.php?'.$Link->prev('month').'">&lt;&lt;</a>'  );
+$tpl->setVariable("prev",'<a href="calendar.php?'.$Link->prev('month').'" rel="next">&lt;&lt;</a>'  );
 
 $nextMonth = $Link->nextMonth('object');
 $tpl->setVariable("next",'<a href="calendar.php?'.$Link->next('month').'">&gt;&gt;</a>'  );
