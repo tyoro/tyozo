@@ -11,8 +11,8 @@ $(function(){
 		$('a.lightbox',e).lightBox();
 		// display:noneにflashの発火が仕込めないので、hoverしたタイミングでzclipをセットする。
 		$('a.copy',e).hover(function(){
-			//難度もzclipをセットしないように、既にセットしているか確認する。
-			if( !this.nextElementSibling || !this.nextElementSibling.className == "zclip" ){
+			//何度もzclipをセットしないように、既にセットしているか確認する。
+			if( !this.nextElementSibling || this.nextElementSibling.className != "zclip" ){
 				$(this).zclip({
 					path:'js/ZeroClipboard.swf',
 					copy:function(){ return $(this.parentNode).css("background-image").match(/https?:\/\/[-_.!~*'()a-zA-Z0-9;\/?:@&=+$,%#]+[a-z]/g); },
