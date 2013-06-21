@@ -68,6 +68,29 @@ span.weekDay6 {
 	color:#cc0000;
 }
 
+.cover {
+    display: inline-block;
+    background-color: #ccc;
+    background-position: center center;
+    background-repeat: no-repeat;
+	width:100%;
+	height:130px;
+    border: 1px solid #ccc;
+    background-size: cover;
+	text-align:right;
+}
+
+.thumbnail
+{
+	height:190px;
+}
+
+.thumbnail .btn 
+{ display: none; }
 
 
+.thumbnail:hover .btn
+{
+	display: inline-block;
+}
 

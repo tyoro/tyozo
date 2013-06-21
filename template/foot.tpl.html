@@ -1,2 +1,54 @@
-<hr />
-</BODY></HTML>
+</div> <!-- /container -->
+<!-- Le javascript
+    ================================================== -->
+	<script src="js/jquery-1.10.1.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/jquery.lightbox-0.5.min.js"></script>
+	<script src="js/jquery.zclip.min.js"></script>
+	<script >
+$(function(){
+	(actionSet = function(e){
+		$('a.lightbox',e).lightBox();
+		// display:noneにflashの発火が仕込めないので、hoverしたタイミングでzclipをセットする。
+		$('a.copy',e).hover(function(){
+			//難度もzclipをセットしないように、既にセットしているか確認する。
+			if( !this.nextElementSibling || !this.nextElementSibling.className == "zclip" ){
+				$(this).zclip({
+					path:'js/ZeroClipboard.swf',
+					copy:function(){ return $(this.parentNode).css("background-image").match(/https?:\/\/[-_.!~*'()a-zA-Z0-9;\/?:@&=+$,%#]+[a-z]/g); },
+					afterCopy:function(){$(this).removeClass('btn-primary');}
+				});
+			}
+		});
+	})(document);
+
+	window.addEventListener(
+		'AutoPatchWork.DOMNodeInserted',
+		function(e){actionSet(e.target);}
+	);
+	window.addEventListener(
+		'AutoPagerize_DOMNodeInserted',
+		function(e){actionSet(e.target);}
+	);
+});
+function deleteImage(e,src){
+	var imgbox = $(e.target).parent().parent();
+	if(window.confirm('this image delete ok?')){
+		$.ajax({
+			type:"POST",
+			url:"./delete.php",
+			data: "url="+src.match(".+/(.+?)\.[a-z]+$")[1],
+			success: function(msg){
+				if( msg == "success." ){
+					imgbox.remove();
+				}else{
+					alert(msg);
+				}
+			},
+			error: function(data){ }
+		});
+	}
+	return false;
+}
+	</script>
+</body></html>

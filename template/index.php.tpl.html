@@ -1,19 +1,20 @@
 {head}
 <div class="autopagerize_page_element">
-<div class="clearfix" >
+	<ul class="thumbnails">
 <!-- BEGIN list -->
-<div class="imgbox">
-<a class="image lightbox" href="{name}" >
-<img src='{name}' width="100pixl" height="100pixl" />
-</a>
-<div class="element-foot">
-{time}<br/>
-<input type="button" class="delete" value="del" onclick="deleteImage(event,'{name}');" />
-</div>
-</div>
+<li class="span{size}">
+	<div class="thumbnail" >
+		<div class="cover" style="background-image: url('{name}')" >
+			<a href="#" class="btn btn-danger delete over-btn" onclick="deleteImage(event,'{name}');" ><i class="icon-trash"></i></a>
+			<a href="#" class="btn btn-primary copy over-btn"><i class="icon-retweet"></i></a>
+		</div>
+		<p class="caption">
+		{time}
+		</p>
+	</div>
+</li>
 <!-- END list -->
-</div>
-</div>
+</div><!-- div.autopagerize_page_element -->
 <!-- BEGIN next -->
 <a rel="next" href="index.php?page={page}" class="next" >next</a>
 <!-- END next -->
