@@ -14,18 +14,17 @@ while($file_name = readdir($dir)) {
 closedir($dir);
 
 usort( $files, function($a,$b){ return $b['time'] - $a['time']; } );
+$cnt = count($files);
 
-foreach( $files as $file ){
-	if(  $i>= $page*$PER_PAGE ){
-		$tpl->setCurrentBlock('list');
-		$tpl->setVariable( 'name',$DIR_PATH.$file['name']);
-		$tpl->setVariable( 'time',date( "m/d G:i", $file['time']));
-		$tpl->parseCurrentBlock();
-		if( $i > $PER_PAGE * ($page+1) ){ $next = true; break; }
-	}
-	$i++;
+for( $i = $page*$PER_PAGE ; $i<($page+1)*$PER_PAGE && $i<$cnt ;$i++)
+{
+	$tpl->setCurrentBlock('list');
+	$tpl->setVariable( 'size',$ITEM_SIZE);
+	$tpl->setVariable( 'name',$DIR_PATH.$files[$i]['name']);
+	$tpl->setVariable( 'time',date( "m/d G:i", $files[$i]['time']));
+	$tpl->parseCurrentBlock();
 }
-if( $next && $i < count($files)  ){
+if( $i < $cnt  ){
 	$tpl->setCurrentBlock('next');
 	$tpl->setVariable( 'page',$page+1);
 	$tpl->parseCurrentBlock();
