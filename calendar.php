@@ -10,18 +10,36 @@ $dir = opendir($DIR_PATH);
 $fileNames = Array();
 $i=0;
 
-$y = isset($_GET['y'])?$_GET['y']-0:date('Y');
-$m = isset($_GET['m'])?$_GET['m']-0:date('n');
+$now_y = date('Y');
+$now_m = date('n');
+$y = isset($_GET['y'])?$_GET['y']-0:$now_y;
+$m = isset($_GET['m'])?$_GET['m']-0:$now_m;
 
+$min_time = 1600000000;
 while($file_name = readdir($dir)) {
     if( is_file("{$DIR_PATH}{$file_name}") && preg_match( '/\.png$/', $file_name ) ) {
 		$time = filemtime("{$DIR_PATH}{$file_name}");
 		if( date( "Yn",$time) == $y.$m ){
         	$files[date("j",$time)][] =  array( 'name'=>$file_name, 'time'=>$time);
 		}
+		if( $time < $min_time ){ $min_time = $time; }
     }
 }
 closedir($dir);
+
+$min_y = date('Y',$min_time);
+$min_m = date('m',$min_time);
+
+for( $i=$now_y;$i>=$min_y;$i--)
+{
+	for( $j=($now_y==$i)?$now_m:12;($min_y!=$i||$j>=$min_m)&&$j>0;$j--)
+	{
+		$tpl->setCurrentBlock('select_option');
+		$tpl->setVariable( "t_name", sprintf( "%d.%02d",$i,$j ) );
+		$tpl->setVariable( "t_value", "y=$i&m=$j" );
+		$tpl->parseCurrentBlock();
+	}
+}
 
 $Month = new Calendar_Month($y, $m);
 $Link = new Calendar_Decorator_Uri($Month);
@@ -53,10 +71,15 @@ $Link->setFragments( 'y', 'm' );
 $tpl->setVariable("now",$Link->thisYear().' '.$Link->thisMonth());
 
 $prevMonth = $Link->prevMonth('object');
-$tpl->setVariable("prev",'<a href="calendar.php?'.$Link->prev('month').'" rel="next">&lt;&lt;</a>'  );
+$tpl->setVariable("prev",'<a href="calendar.php?'.$Link->prev('month').'">&lt;&lt;</a>'  );
 
 $nextMonth = $Link->nextMonth('object');
-$tpl->setVariable("next",'<a href="calendar.php?'.$Link->next('month').'">&gt;&gt;</a>'  );
+
+if( $Link->thisMonth() == $now_m && $Link->thisYear() == $now_y ){
+	$tpl->setVariable("next",'' );
+}else{
+	$tpl->setVariable("next",'<a href="calendar.php?'.$Link->next('month').'" rel="next">&gt;&gt;</a>'  );
+}
 
 $tpl->parse("calendar");
 
